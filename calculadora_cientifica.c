@@ -14,15 +14,15 @@ double radianos(double graus)
 /* Função para calcular o seno usando série de Taylor */
 double seno(double x, int precisao)
 {
+	double termo, soma;
+    int n;
+	
     if (x < 0 || x > 90)
     {
         printf("Erro: O valor de x deve estar no intervalo [0, 90º]\n");
         return -1;
     }
 
-    double termo, soma;
-    int n;
-    
     x = radianos(x); /* Transformar em radianos */
 
     termo = x;
@@ -42,14 +42,14 @@ double seno(double x, int precisao)
 /* Função para calcular o cosseno usando série de Taylor */
 double cosseno(double x, int precisao)
 {
+	double termo, soma;
+    int n;
+	
     if (x < 0 || x > 90)
     {
         printf("Erro: O valor de x deve estar no intervalo [0, 90º]\n");
         return -1;
     }
-
-    double termo, soma;
-    int n;
 
     x = radianos(x); /* Transformar em radianos */
 
@@ -70,14 +70,14 @@ double cosseno(double x, int precisao)
 /* Função para calcular a exponencial e^x usando série de Taylor */
 double exponencial(double x, int precisao)
 {
+	double termo, soma;
+    int n;
+	
     if (x < 2 || x > 100)
     {
         printf("Erro: O valor de x deve estar no intervalo [2, 100]\n");
         return -1;
     }
-
-    double termo, soma;
-    int n;
 
     termo = 1;
     soma = 1;
@@ -96,15 +96,15 @@ double exponencial(double x, int precisao)
 /* Função para calcular o logaritmo natural usando transformação e série */
 double logaritmo_natural(double x, int precisao)
 {
+	double y;
+    double termo, soma, temp;
+    int n;
+	
     if (x < 2 || x > 100)
     {
         printf("Erro: O valor de x deve estar no intervalo [2, 100]\n");
         return -1;
     }
-
-    double y;
-    double termo, soma, temp;
-    int n;
 
     /* Transformação para usar o intervalo entre -1 e 1 */
     y = (x - 1) / (x + 1);
@@ -126,14 +126,14 @@ double logaritmo_natural(double x, int precisao)
 /* Função para calcular o seno hiperbólico usando série de Taylor */
 double seno_hiperbolico(double x, int precisao)
 {
+	double termo, soma;
+    int n;
+	
     if (x < 0 || x > 100)
     {
         printf("Erro: O valor de x deve estar no intervalo [0, 100]\n");
         return -1;
     }
-
-    double termo, soma;
-    int n;
 
     termo = x;
     soma = x;
@@ -152,16 +152,16 @@ double seno_hiperbolico(double x, int precisao)
 /* Função para calcular a raiz n-ésima de um número usando o Método de Newton */
 double raiz(double A, int n, int precisao)
 {
+	double f_prime_x;
+    double fx;
+    double x0;
+    double x1;
+	
     if (A < 2 || A > 5000 || n < 2 || n > 20)
     {
         printf("Erro: O valor de x deve estar no intervalo [2, 5000] e n no intervalo [2, 20]\n");
         return -1;
     }
-
-    double f_prime_x;
-    double fx;
-    double x0;
-    double x1;
 
     /* Definindo o chute inicial */
     x0 = (A > 2) ? 3 : 2.1;
