@@ -1,32 +1,28 @@
-# calculadora_cientifica
+# Calculadora Científica
 
-* metodo de compilar
+Este projeto é uma **calculadora científica** que implementa várias funções matemáticas utilizando séries de Taylor e o Método de Newton. O programa foi desenvolvido para calcular valores aproximados de funções comuns com precisão ajustável.
 
-```
+## Funcionalidades
+
+A calculadora é capaz de calcular as seguintes funções:
+
+1. **Seno (sin)**: para valores no intervalo [0, 90º] com até 5 casas decimais de precisão.
+2. **Cosseno (cos)**: para valores no intervalo [0, 90º] com até 5 casas decimais de precisão.
+3. **Logaritmo Natural (ln)**: para valores no intervalo [2, 100] com até 5 casas decimais de precisão.
+4. **Raiz n-ésima**: para valores no intervalo [2, 5000] com até 10 casas decimais de precisão e valores inteiros de n no intervalo [2, 20].
+5. **Exponencial (e^x)**: para valores no intervalo [2, 100] com até 5 casas decimais de precisão.
+6. **Seno Hiperbólico (sinh)**: para valores no intervalo [0, 100] com até 3 casas decimais de precisão.
+
+## Compilação e Execução
+
+### Requisitos
+
+- GCC (Compilador C)
+- Sistema operacional compatível com C ANSI
+
+### Compilar o programa
+
+Para compilar o código, use o comando abaixo no terminal:
+
+```bash
 gcc -o calculadora calculadora_cientifica.c -Wall -pedantic -Wextra -Werror
-```
-
-* entrada de dados:
-
-<li>Bem-vindo à Calculadora Científica!</li>
---- Menu da Calculadora Científica ---
-<li>Escolha uma função para calcular:</li>
-<li>1: Seno (sin)</li>
-<li>2: Cosseno (cos)</li>
-<li>3: Logaritmo Natural (ln)</li>
-<li>4: Raiz n-ésima</li>
-<li>5: Exponencial (e^x)</li>
-<li>6: Seno hiperbólico (sinh)</li>
-<li>0: Sair</li>
--------------------------------------
-Digite o número da função que deseja calcular: 1
-Digite o valor a ser calculado e a precisão desejada: 47.1 5
-
-
-* saida de dados:
-
-Resultado do Seno: 0.73135
-
-Deseja calcular outra função? (s/n): s
-
-
