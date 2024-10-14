@@ -19,10 +19,11 @@ A calculadora é capaz de calcular as seguintes funções:
 
 - GCC (Compilador C)
 - Sistema operacional compatível com C ANSI
+- versão do mingw 4.7.2
 
 ### Compilar o programa
 
 Para compilar o código, use o comando abaixo no terminal:
 
 ```bash
-gcc -o calculadora calculadora_cientifica.c -Wall -pedantic -Wextra -Werror
+gcc -o calculadora calculadora_cientifica.c funcoes.c -Wall -pedantic -Wextra -Werror
