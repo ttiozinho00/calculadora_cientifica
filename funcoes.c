@@ -6,7 +6,6 @@
 /* Função para exibir o menu de opções */
 void exibir_menu()
 {
-    system("cls");
     printf("\n--- Menu da Calculadora Científica ---\n");
     printf("Escolha uma função para calcular:\n");
     printf("1: Seno (sin)\n");

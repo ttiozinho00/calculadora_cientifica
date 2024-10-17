@@ -1,15 +1,22 @@
+#include <math.h>    /* M_PI e M_E */
 #include <locale.h>  /* setlocale() */
 #include <stdio.h>   /* printf() e scanf() */
+#include <stdlib.h>  /*system() */
 #include "funcoes.h" /* Cabeçalho das funções personalizadas */
 
 int main(int argc, char const *argv[])
 {
+
     int func;
-    double x;
+    double radianos, x;
     int precisao, n;
 
     setlocale(LC_CTYPE, "");
 
+    argv = argv;
+    argc = argc;
+
+    system("cls");
     /* Instruções iniciais para o usuário */
     printf("Bem-vindo à Calculadora Científica!\n");
 
@@ -31,7 +38,7 @@ int main(int argc, char const *argv[])
         scanf("%lf %d", &x, &precisao);
         
         /* Converter o valor de graus para radianos */
-        double radianos = x * (M_PI / 180);
+        radianos = x * (M_PI / 180);
 
         switch (func)
         {
