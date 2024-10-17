@@ -1,10 +1,25 @@
 #include <math.h>    /* M_PI e M_E */
 #include <stdio.h>   /* printf() e scanf() */
-#include <stdlib.h> /* system() */
-#include <locale.h>  /* setlocale() */
-#include "funcoes.h"
+#include <stdlib.h>  /* system() */
+#include "funcoes.h" /* Cabeçalho das funções personalizadas */
 
-/* FunÃ§Ã£o para calcular o seno usando sÃ©rie de Taylor */
+/* Função para exibir o menu de opções */
+void exibir_menu()
+{
+    system("cls");
+    printf("\n--- Menu da Calculadora Científica ---\n");
+    printf("Escolha uma função para calcular:\n");
+    printf("1: Seno (sin)\n");
+    printf("2: Cosseno (cos)\n");
+    printf("3: Logaritmo Natural (ln)\n");
+    printf("4: Raiz n-ésima\n");
+    printf("5: Exponencial (e^x)\n");
+    printf("6: Seno hiperbólico (sinh)\n");
+    printf("0: Sair\n");
+    printf("-------------------------------------\n");
+}
+
+/* Função para calcular o seno usando série de Taylor */
 double seno(double x, int precisao)
 {
     double termo, soma;
@@ -12,7 +27,7 @@ double seno(double x, int precisao)
 
     if (x < 0 || x > (M_PI / 2))  /* Intervalo alterado para aceitar valores em radianos (0 a pi/2) */
     {
-        printf("Erro: O valor de x deve estar no intervalo [0, Ï€/2] (radianos)\n");
+        printf("Erro: O valor de x deve estar no intervalo [0, p/2] (radianos)\n");
         return -1;
     }
 
@@ -30,15 +45,15 @@ double seno(double x, int precisao)
     return soma;
 }
 
-/* FunÃ§Ã£o para calcular o cosseno usando sÃ©rie de Taylor */
+/* Função para calcular o cosseno usando série de Taylor */
 double cosseno(double x, int precisao)
 {
     double termo, soma;
     int n;
 
-    if (x < 0 || x > M_PI)  /* Intervalo alterado para aceitar valores em radianos (0 a pi) */
+    if (x < 0 || x > (M_PI / 2))  /* Ajustado para aceitar valores em radianos de 0 a p/2 */
     {
-        printf("Erro: O valor de x deve estar no intervalo [0, Ï€] (radianos)\n");
+        printf("Erro: O valor de x deve estar no intervalo [0, p/2] (radianos)\n");
         return -1;
     }
 
@@ -56,7 +71,7 @@ double cosseno(double x, int precisao)
     return soma;
 }
 
-/* FunÃ§Ã£o para calcular a exponencial e^x usando sÃ©rie de Taylor */
+/* Função para calcular a exponencial e^x usando série de Taylor */
 double exponencial(double x, int precisao)
 {
     double termo, soma;
@@ -82,7 +97,7 @@ double exponencial(double x, int precisao)
     return soma;
 }
 
-/* FunÃ§Ã£o para calcular o logaritmo natural usando transformaÃ§Ã£o e sÃ©rie */
+/* Função para calcular o logaritmo natural usando transformação e série */
 double logaritmo_natural(double x, int precisao)
 {
     double y;
@@ -95,7 +110,7 @@ double logaritmo_natural(double x, int precisao)
         return -1;
     }
 
-    /* TransformaÃ§Ã£o para usar o intervalo entre -1 e 1 */
+    /* Transformação para usar o intervalo entre -1 e 1 */
     y = (x - 1) / (x + 1);
     termo = y;
     soma = 2 * termo;
@@ -112,7 +127,7 @@ double logaritmo_natural(double x, int precisao)
     return soma;
 }
 
-/* FunÃ§Ã£o para calcular o seno hiperbÃ³lico usando sÃ©rie de Taylor */
+/* Função para calcular o seno hiperbólico usando série de Taylor */
 double seno_hiperbolico(double x, int precisao)
 {
     double termo, soma;
@@ -138,7 +153,7 @@ double seno_hiperbolico(double x, int precisao)
     return soma;
 }
 
-/* FunÃ§Ã£o para calcular a raiz n-Ã©sima de um nÃºmero usando o MÃ©todo de Newton */
+/* Função para calcular a raiz n-ésima de um número usando o Método de Newton */
 double raiz(double A, int n, int precisao)
 {
     double f_prime_x;
@@ -148,7 +163,7 @@ double raiz(double A, int n, int precisao)
 
     if (A < 2 || A > 5000 || n < 2 || n > 20)
     {
-        printf("Erro: O valor de A deve estar no intervalo [2, 5000] e n no intervalo [2, 20]\n");
+        printf("Erro: O valor de x deve estar no intervalo [2, 5000] e n no intervalo [2, 20]\n");
         return -1;
     }
 
@@ -170,19 +185,4 @@ double raiz(double A, int n, int precisao)
     }
 
     return x1;
-}
-
-/* FunÃ§Ã£o para exibir o menu de opÃ§Ãµes */
-void exibir_menu()
-{
-    printf("\n--- Menu da Calculadora CientÃ­fica ---\n");
-    printf("Escolha uma funÃ§Ã£o para calcular:\n");
-    printf("1: Seno (sin)\n");
-    printf("2: Cosseno (cos)\n");
-    printf("3: Logaritmo Natural (ln)\n");
-    printf("4: Raiz n-Ã©sima\n");
-    printf("5: Exponencial (e^x)\n");
-    printf("6: Seno hiperbÃ³lico (sinh)\n");
-    printf("0: Sair\n");
-    printf("-------------------------------------\n");
 }

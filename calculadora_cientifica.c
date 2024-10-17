@@ -1,19 +1,12 @@
-/*gcc -o calculadora calculadora_cientifica.c -Wall -pedantic -Wextra -Werror */
-
-#include <stdio.h>   /* printf() e scanf() */
 #include <locale.h>  /* setlocale() */
-#include "funcoes.h"
-
+#include <stdio.h>   /* printf() e scanf() */
+#include "funcoes.h" /* Cabeçalho das funções personalizadas */
 
 int main(int argc, char const *argv[])
 {
     int func;
     double x;
     int precisao, n;
-    char escolha;
-    
-    argc = argc;
-    argv = argv;    
 
     setlocale(LC_CTYPE, "");
 
@@ -34,42 +27,44 @@ int main(int argc, char const *argv[])
         }
 
         /* Solicitar o valor e a precisão ao usuário */
-        printf("Digite o valor a ser calculado e a precisão desejada: ");
+        printf("Digite o valor a ser calculado (em graus) e a precisão desejada: ");
         scanf("%lf %d", &x, &precisao);
+        
+        /* Converter o valor de graus para radianos */
+        double radianos = x * (M_PI / 180);
 
         switch (func)
         {
             case 1:
-                printf("\nResultado do Seno: %.5f\n", seno(x, precisao));
+                printf("\nResultado do Seno: %.*f\n", precisao, seno(radianos, precisao));
                 break;
             case 2:
-                printf("\nResultado do Cosseno: %.5f\n", cosseno(x, precisao));
+                printf("\nResultado do Cosseno: %.*f\n", precisao, cosseno(radianos, precisao));
                 break;
             case 3:
-                printf("Resultado do Logaritmo Natural: %.5f\n", logaritmo_natural(x, precisao));
+                printf("Resultado do Logaritmo Natural: %.*f\n", precisao, logaritmo_natural(radianos, precisao));
                 break;
             case 4:
                 /* Lendo valor de n para a raiz n-ésima */
                 printf("Digite o valor de n (ordem da raiz): ");
                 scanf("%d", &n);
-                printf("\nResultado da Raiz %d-ésima: %.10f\n", n, raiz(x, n, precisao));
+                if (raiz(radianos, n, precisao) != -1)
+                {
+                    printf("\nResultado da Raiz %d-ésima: %.*f\n", n, precisao, raiz(radianos, n, precisao));
+                }
                 break;
             case 5:
-                printf("\nResultado da Exponencial: %.5f\n", exponencial(x, precisao));
+                printf("\nResultado da Exponencial: %.*f\n", precisao, exponencial(radianos, precisao));
                 break;
             case 6:
-                printf("\nResultado do Seno Hiperbólico: %.3f\n", seno_hiperbolico(x, precisao));
+                printf("\nResultado do Seno Hiperbólico: %.*f\n", precisao, seno_hiperbolico(radianos, precisao));
                 break;
             default:
                 printf("Opção inválida! Por favor, selecione uma opção válida.\n");
                 break;
         }
 
-        /* Perguntar se o usuário quer continuar */
-        printf("\nDeseja calcular outra função? (s/n): ");
-        scanf(" %c", &escolha); /* O espaço antes do %c ignora o enter deixado no buffer */
-
-    } while (escolha == 's' || escolha == 'S');
+    } while (1);
 
     printf("\nObrigado por usar a calculadora! Até a próxima.\n");
 

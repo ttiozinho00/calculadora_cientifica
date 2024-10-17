@@ -1,13 +1,13 @@
 #ifndef FUNCOES_H
 #define FUNCOES_H
 
-double radianos();
+/* Funções para cálculos matemáticos */
 double seno();
 double cosseno();
 double exponencial();
 double logaritmo_natural();
 double seno_hiperbolico();
 double raiz();
-void exibir_menu();
+void exibir_menu(); 
 
-#endif
+#endif 
