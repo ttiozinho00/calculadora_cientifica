@@ -1,79 +1,49 @@
 #include <math.h>    /* M_PI e M_E */
 #include <locale.h>  /* setlocale() */
 #include <stdio.h>   /* printf() e scanf() */
-#include <stdlib.h>  /*system() */
+#include <stdlib.h>  /* system() */
 #include "funcoes.h" /* Cabeçalho das funções personalizadas */
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
+    int func;      
+    double x;      
+    int precisao;  
 
-    int func;
-    double radianos, x;
-    int precisao, n;
+    setlocale(LC_CTYPE, ""); /* Configura a localização para suportar caracteres especiais */
 
-    setlocale(LC_CTYPE, "");
-
+    /*silenciar parametro argc e argv*/
     argv = argv;
     argc = argc;
 
-    system("cls");
+    system("cls"); /* Limpa a tela */
     /* Instruções iniciais para o usuário */
     printf("Bem-vindo à Calculadora Científica!\n");
 
     /* Loop principal do programa */
-    do
+    do 
     {
-        exibir_menu();
+        exibir_menu(); /* Exibe o menu de opções */
         printf("Digite o número da função que deseja calcular: ");
-        scanf("%d", &func);
+        scanf("%d", &func); /* Lê a opção do usuário */
 
-        if (func == 0)
+        if (func == 0) 
         {
             printf("Encerrando a calculadora...\n");
-            break;
+            break; /* Sai do loop se o usuário escolher 0 */
         }
 
         /* Solicitar o valor e a precisão ao usuário */
-        printf("Digite o valor a ser calculado (em graus) e a precisão desejada: ");
-        scanf("%lf %d", &x, &precisao);
-        
-        /* Converter o valor de graus para radianos */
-        radianos = x * (M_PI / 180);
+        printf("Digite o valor a ser calculado (em graus): ");
+        scanf("%lf", &x); /* Lê o valor a ser calculado */
+        printf("Digite a precisão desejada (número de casas decimais): ");
+        scanf("%d", &precisao); /* Lê a precisão desejada */
 
-        switch (func)
-        {
-            case 1:
-                printf("\nResultado do Seno: %.*f\n", precisao, seno(radianos, precisao));
-                break;
-            case 2:
-                printf("\nResultado do Cosseno: %.*f\n", precisao, cosseno(radianos, precisao));
-                break;
-            case 3:
-                printf("Resultado do Logaritmo Natural: %.*f\n", precisao, logaritmo_natural(radianos, precisao));
-                break;
-            case 4:
-                /* Lendo valor de n para a raiz n-ésima */
-                printf("Digite o valor de n (ordem da raiz): ");
-                scanf("%d", &n);
-                if (raiz(radianos, n, precisao) != -1)
-                {
-                    printf("\nResultado da Raiz %d-ésima: %.*f\n", n, precisao, raiz(radianos, n, precisao));
-                }
-                break;
-            case 5:
-                printf("\nResultado da Exponencial: %.*f\n", precisao, exponencial(radianos, precisao));
-                break;
-            case 6:
-                printf("\nResultado do Seno Hiperbólico: %.*f\n", precisao, seno_hiperbolico(radianos, precisao));
-                break;
-            default:
-                printf("Opção inválida! Por favor, selecione uma opção válida.\n");
-                break;
-        }
+        /* Processar a opção escolhida pelo usuário */
+        processar_opcao(func, x, precisao); /* Chama a função para processar a opção */
 
-    } while (1);
+    } while (1); /* Continua até que o usuário escolha sair */
 
-    printf("\nObrigado por usar a calculadora! Até a próxima.\n");
+    printf("\nObrigado por usar a calculadora! Até a próxima.\n"); /* Mensagem de despedida */
 
-    return 0;
+    return 0; /* Indica que o programa terminou com sucesso */
 }
