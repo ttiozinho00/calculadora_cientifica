@@ -1,49 +1,46 @@
-#include <math.h>    /* M_PI e M_E */
 #include <locale.h>  /* setlocale() */
 #include <stdio.h>   /* printf() e scanf() */
 #include <stdlib.h>  /* system() */
 #include "funcoes.h" /* Cabeçalho das funções personalizadas */
 
-int main(int argc, char const *argv[]) {
-    int func;      
-    double x;      
-    int precisao;  
+int main(int argc, char const *argv[])
+{
+    int func;
+    double x;
+    int precisao;
 
-    setlocale(LC_CTYPE, ""); /* Configura a localização para suportar caracteres especiais */
+    /* Define a localidade para exibir caracteres conforme o idioma do sistema */
+    setlocale(LC_CTYPE, "");
 
-    /*silenciar parametro argc e argv*/
+    /* Ignorando parâmetros da linha de comando para evitar warnings */
     argv = argv;
     argc = argc;
-
-    system("cls"); /* Limpa a tela */
-    /* Instruções iniciais para o usuário */
+    
     printf("Bem-vindo à Calculadora Científica!\n");
 
     /* Loop principal do programa */
-    do 
+    do
     {
-        exibir_menu(); /* Exibe o menu de opções */
+        exibir_menu();
         printf("Digite o número da função que deseja calcular: ");
-        scanf("%d", &func); /* Lê a opção do usuário */
+        scanf("%d", &func);
 
-        if (func == 0) 
+        if (func == 0)
         {
             printf("Encerrando a calculadora...\n");
-            break; /* Sai do loop se o usuário escolher 0 */
+            break;
         }
 
-        /* Solicitar o valor e a precisão ao usuário */
-        printf("Digite o valor a ser calculado (em graus): ");
-        scanf("%lf", &x); /* Lê o valor a ser calculado */
-        printf("Digite a precisão desejada (número de casas decimais): ");
-        scanf("%d", &precisao); /* Lê a precisão desejada */
+        /* Solicita o valor e a precisão ao usuário */
+        printf("Digite o valor a ser calculado (em graus) e a precisão desejada: ");
+        scanf("%lf %d", &x, &precisao);
 
-        /* Processar a opção escolhida pelo usuário */
-        processar_opcao(func, x, precisao); /* Chama a função para processar a opção */
+        /* Executa o cálculo com base na escolha do usuário */
+        executar_calculo(func, x, precisao);
 
-    } while (1); /* Continua até que o usuário escolha sair */
+    } while (1);
 
-    printf("\nObrigado por usar a calculadora! Até a próxima.\n"); /* Mensagem de despedida */
+    printf("\nObrigado por usar a calculadora! Até a próxima.\n");
 
-    return 0; /* Indica que o programa terminou com sucesso */
+    return 0;
 }
