@@ -171,7 +171,7 @@ double logaritmo_natural(double x, int precisao)
 }
 
 /* Função para calcular a raiz n-ésima */
-double raiz_n(int n, double x)
+double raiz(int n, double x)
 {
     double resultado;                /* Variável para armazenar o resultado da raiz */
     double erro;                    /* Variável para armazenar o erro de aproximação */
@@ -223,3 +223,97 @@ double seno_hiperbolico(double x, int precisao)
 
     return soma;                /* Retorna a soma total do seno hiperbólico */
 }
+
+/* Função para executar o cálculo com base na opção selecionada */
+void executar_calculo(int func, double x, int precisao)
+{
+    /* Declaração das variáveis para armazenar o valor em radianos, o resultado do cálculo e o valor de 'n' para raiz */
+    double radianos, resultado;
+    int n;
+    
+    /* Converte o valor 'x' de graus para radianos */
+    radianos = x * (M_PI / 180);
+
+    /* Estrutura de seleção 'switch' para escolher o cálculo com base na opção 'func' */
+    switch (func)
+    {
+        /* Caso 1: Cálculo do Seno */
+        case 1:
+        {
+            /* Chama a função 'seno' passando o valor em radianos e a precisão desejada */
+            resultado = seno(radianos, precisao);
+            /* Exibe o resultado formatado com o número de casas decimais especificado */
+            printf("\nResultado do Seno: %.*f\n", precisao, resultado);
+            break;
+        }
+        
+        /* Caso 2: Cálculo do Cosseno */
+        case 2:
+        {
+            /* Chama a função 'cosseno' passando o valor em radianos e a precisão desejada */
+            resultado = cosseno(radianos, precisao);
+            /* Exibe o resultado formatado com o número de casas decimais especificado */
+            printf("\nResultado do Cosseno: %.*f\n", precisao, resultado);
+            break;
+        }
+        
+        /* Caso 3: Cálculo do Logaritmo Natural */
+        case 3:
+        {
+            /* Chama a função 'logaritmo_natural' passando o valor em graus e a precisão desejada */
+            /* logaritmo_natural espera x em graus, então não convertemos para radianos */
+            resultado = logaritmo_natural(x, precisao);
+            /* Exibe o resultado formatado com o número de casas decimais especificado */
+            printf("\nResultado do Logaritmo Natural: %.*f\n", precisao, resultado);
+            break;
+        }
+        
+        /* Caso 4: Cálculo da Raiz */
+        case 4:
+        {
+            /* Solicita ao usuário que insira o valor de 'n' (ordem da raiz) */
+            printf("Digite o valor de n (ordem da raiz): ");
+            scanf("%d", &n);
+            /* Chama a função 'raiz' passando o valor e o valor de 'n' */
+            resultado = raiz(x, n); /* Removido o parâmetro 'precisao'*/
+            /* Verifica se a função retornou um valor válido antes de exibir o resultado */
+            if (resultado != -1)
+            {
+                printf("\nResultado da Raiz %d-ésima: %.*f\n", n, precisao, resultado);
+            }
+            break;
+        }
+        
+        /* Caso 5: Cálculo da Exponencial */
+        case 5:
+        {
+            /* Chama a função 'exponencial' passando o valor em graus e a precisão desejada */
+            /* exponencial espera x em graus, então não convertemos para radianos */
+            resultado = exponencial(x, precisao);
+            /* Exibe o resultado formatado com o número de casas decimais especificado */
+            printf("\nResultado da Exponencial: %.*f\n", precisao, resultado);
+            break;
+        }
+        
+        /* Caso 6: Cálculo do Seno Hiperbólico */
+        case 6:
+        {
+            /* Chama a função 'seno_hiperbolico' passando o valor em graus e a precisão desejada */
+            /* seno_hiperbolico espera x em graus, então não convertemos para radianos */
+            resultado = seno_hiperbolico(x, precisao);
+            /* Exibe o resultado formatado com o número de casas decimais especificado */
+            printf("\nResultado do Seno Hiperbólico: %.*f\n", precisao, resultado);
+            break;
+        }
+        
+        /* Caso padrão: Opção inválida */
+        default:
+        {
+            /* Exibe uma mensagem de erro informando que a opção é inválida */
+            printf("Opção inválida! Por favor, selecione uma opção válida.\n");
+            break;
+        }
+    }
+}
+
+
