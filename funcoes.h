@@ -1,17 +1,17 @@
 #ifndef FUNCOES_H
 #define FUNCOES_H
 
-/* Funções para cálculos matemáticos */
-double seno();                  /* Cálculo do seno usando série de Taylor */
-double cosseno();               /* Cálculo do cosseno usando série de Taylor */
-double exponencial();           /* Cálculo da exponencial e^x usando série de Taylor */
-double logaritmo_natural();     /* Cálculo do logaritmo natural usando série de Taylor */
-double seno_hiperbolico();      /* Cálculo do seno hiperbólico usando série de Taylor */
-double raiz();                  /* Cálculo da raiz n-ésima usando o Método de Newton */
+/* FunÃ§Ãµes para calculos matematicos */
+double seno(double, int);                  /* Calculo do seno usando serie de Taylor */
+double cosseno(double, int);               /* Calculo do cosseno usando serie de Taylor */
+double exponencial(double, int);           /* Calculo da exponencial e^x usando serie de Taylor */
+double logaritmo_natural(double, int);     /* Calculo do logaritmo natural usando serie de Taylor */
+double seno_hiperbolico(double, int);      /* Calculo do seno hiperbï¿½lico usando serie de Taylor */
+double raiz(int, double);                  /* Calculo da raiz n-esima usando o Metodo de Newton */
 
-/* Funções de utilidade */
-void exibir_menu();              /* Exibe o menu de opções */
+/* FunÃ§Ãµes de utilidade */
+void exibir_menu();              /* Exibe o menu de opoees */
 void limpar_buffer();            /* Limpa o buffer de entrada */
-void executar_calculo();         /* Executa o cálculo com base na opção selecionada */
+void executar_calculo(int, double, int);         /* Executa o calculo com base na opÃ§ao selecionada */
 
 #endif /* FUNCOES_H */

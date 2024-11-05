@@ -16,12 +16,12 @@
 /* Função para exibir o menu de opções */
 void exibir_menu()
 {
-    printf("\n--- Menu da Calculadora Científica ---\n");  /* Título do menu */
+    printf("\n--- MENU DA CALCULADORA CIENTIFICA ---\n");  /* Título do menu */
     printf("Escolha uma função para calcular:\n");       /* Solicita que o usuário escolha uma função */
     printf("1: Seno (sin)\n");                          /* Opção 1: Calcular seno */
     printf("2: Cosseno (cos)\n");                       /* Opção 2: Calcular cosseno */
     printf("3: Logaritmo Natural (ln)\n");             /* Opção 3: Calcular logaritmo natural */
-    printf("4: Raiz n-ésima\n");                        /* Opção 4: Calcular raiz n-ésima */
+    printf("4: Raiz n-esima\n");                        /* Opção 4: Calcular raiz n-ésima */
     printf("5: Exponencial (e^x)\n");                  /* Opção 5: Calcular exponencial */
     printf("6: Seno hiperbólico (sinh)\n");            /* Opção 6: Calcular seno hiperbólico */
     printf("0: Sair\n");                               /* Opção 0: Sair do programa */
@@ -48,7 +48,7 @@ void limpar_buffer()
 }
 
 /* Função auxiliar para verificar intervalo */
-int verifica_intervalo(double x, double min, double max, const char* mensagem_erro)
+int verifica_intervalo(double x, double min, double max, char* mensagem_erro)
 {
     /* Verifica se x está fora do intervalo permitido */
     if (x < min || x > max)
@@ -93,7 +93,7 @@ double cosseno(double x, int precisao)
     int n;                             /* Contador para os termos da série */
 
     /* Verifica se x está no intervalo [0, π] */
-    if (!verifica_intervalo(x, 0, M_PI, "Erro: O valor de x deve estar no intervalo [0, π] (radianos)"))
+    if (!verifica_intervalo(x, 0, INTERVALO_SENO_COSSENO, "Erro: O valor de x deve estar no intervalo [0, π] (radianos)"))
     {
         return -1;                     /* Retorna -1 em caso de erro */
     }
@@ -144,7 +144,7 @@ double exponencial(double x, int precisao)
 double logaritmo_natural(double x, int precisao)
 {
     double y;                        /* Variável para armazenar a transformação do logaritmo */
-    double termo, soma, temp;       /* Variáveis para os termos da série e a soma total */
+    double termo, soma;             /* Variáveis para os termos da série e a soma total */
     int n;                           /* Contador para os termos da série */
 
     /* Verifica se x está no intervalo [2, 100] */
@@ -156,15 +156,14 @@ double logaritmo_natural(double x, int precisao)
     y = (x - 1) / (x + 1);          /* Calcula a transformação de x */
     termo = y;                      /* Inicializa o primeiro termo da série */
     soma = 2 * termo;               /* Inicializa a soma com o primeiro termo transformado */
-    temp = termo * termo;           /* Armazena o quadrado do primeiro termo */
     n = 1;                          /* Inicializa o contador de termos */
 
     /* Loop para calcular a soma da série até atingir a precisão desejada */
     while (fabs(termo) > pow(10, -precisao))
     {
         n += 2;                     /* Incrementa n para a próxima iteração */
-        termo *= temp;             /* Calcula o próximo termo */
-        soma += termo / n;         /* Adiciona o termo à soma total */
+        termo *= y * y;             /* Calcula o próximo termo */
+        soma += 2 * termo / n;         /* Adiciona o termo à soma total */
     }
 
     return soma;                /* Retorna a soma total do logaritmo natural */
@@ -175,7 +174,7 @@ double raiz(int n, double x)
 {
     double resultado;                /* Variável para armazenar o resultado da raiz */
     double erro;                    /* Variável para armazenar o erro de aproximação */
-    double temp;                    /* Variável para armazenar o valor temporário */
+    /*double temp;                     Variável para armazenar o valor temporário */
     
     /* Verifica se n está no intervalo [2, 20] e se x está no intervalo [2, 5000] */
     if (!verifica_intervalo(n, INTERVALO_RAIZ_N_MIN, INTERVALO_RAIZ_N_MAX, "Erro: n deve estar entre 2 e 20") || !verifica_intervalo(x, INTERVALO_RAIZ_MIN, INTERVALO_RAIZ_MAX, "Erro: x deve estar entre 2 e 5000"))
@@ -190,8 +189,8 @@ double raiz(int n, double x)
     while (fabs(resultado - erro) > 0.0001)  /* Continua até a precisão desejada ser alcançada */
     {
         erro = resultado;                     /* Armazena o resultado anterior */
-        temp = pow(erro, n - 1);             /* Eleva o resultado ao (n-1) */
-        resultado = ((n - 1) * temp + x) / n; /* Aplica a fórmula de Newton */
+        /*temp = pow(erro, n - 1);              Eleva o resultado ao (n-1) */
+        resultado = ((n - 1) * resultado + x / pow(erro, n - 1)) / n; /* Aplica a fórmula de Newton */
     }
 
     return resultado;                /* Retorna o resultado da raiz n-ésima */

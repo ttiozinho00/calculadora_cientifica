@@ -35,6 +35,8 @@
    Programador: []
    RGM: []
    Data da última modificação: []
+
+   Para compilar: gcc -o calculadora.exe calculadora_cientifica.c funcoes.c -Wall -pedantic -Wextra -Werror
 */
 
 
@@ -56,7 +58,7 @@ int main(int argc, char const *argv[])
     argv = argv; /* Este comando é usado para evitar warnings de variáveis não utilizadas */
     argc = argc; /* Este comando é usado para evitar warnings de variáveis não utilizadas */
     
-    printf("Bem-vindo à Calculadora Científica!\n"); /* Mensagem de boas-vindas ao usuário */
+    printf("Bem vindo a Calculadora Cientifica!\n"); /* Mensagem de boas-vindas ao usuário */
 
     /* Loop principal do programa */
     do
@@ -72,15 +74,17 @@ int main(int argc, char const *argv[])
         }
 
         /* Solicita o valor e a precisão ao usuário */
-        printf("Digite o valor a ser calculado (em graus) e a precisão desejada: "); /* Solicita valor e precisão */
-        scanf("%lf %d", &x, &precisao); /* Lê o valor e a precisão fornecidos pelo usuário */
+        printf("Digite o valor a ser calculado (em graus): "); /* Solicita valor a ser calculado*/
+        scanf("%lf", &x); /* Lê o valor e a precisão fornecidos pelo usuário */
+        printf("Digite a precisao desejada: "); /* Solicita a precisão */
+        scanf("%d", &precisao); /* Lê o valor e a precisão fornecidos pelo usuário */
 
         /* Executa o cálculo com base na escolha do usuário */
         executar_calculo(func, x, precisao); /* Chama a função para executar o cálculo com os parâmetros fornecidos */
 
     } while (1); /* Loop que continua até que o usuário decida encerrar */
 
-    printf("\nObrigado por usar a calculadora! Até a próxima.\n"); /* Mensagem de despedida ao usuário */
+    printf("\nObrigado por usar a calculadora! Ate a proxima.\n"); /* Mensagem de despedida ao usuário */
 
     return 0; /* Retorna 0, indicando que o programa foi executado com sucesso */
 }
