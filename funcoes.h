@@ -1,17 +1,18 @@
 #ifndef FUNCOES_H
 #define FUNCOES_H
 
-/* Funções para calculos matematicos */
-double seno(double, int);                  /* Calculo do seno usando serie de Taylor */
-double cosseno(double, int);               /* Calculo do cosseno usando serie de Taylor */
-double exponencial(double, int);           /* Calculo da exponencial e^x usando serie de Taylor */
-double logaritmo_natural(double, int);     /* Calculo do logaritmo natural usando serie de Taylor */
-double seno_hiperbolico(double, int);      /* Calculo do seno hiperb�lico usando serie de Taylor */
-double raiz(int, double);                  /* Calculo da raiz n-esima usando o Metodo de Newton */
+/* Funções para cálculos matemáticos */
+double cosseno(double x, int precisao);
+double exponencial(double x, int precisao);
+double logaritmo_natural(double x, int precisao);
+double raiz(int n, double x, int precisao);
+double seno(double x, int precisao);
+double seno_hiperbolico(double x, int precisao);
 
 /* Funções de utilidade */
-void exibir_menu();              /* Exibe o menu de opoees */
-void limpar_buffer();            /* Limpa o buffer de entrada */
-void executar_calculo(int, double, int);         /* Executa o calculo com base na opçao selecionada */
+void executar_calculo(int func, double x, int n_raiz, int precisao);
+void exibir_menu();
+void limpar_buffer();
+int verifica_intervalo(double x, double min, double max, char* mensagem_erro);
 
 #endif /* FUNCOES_H */
